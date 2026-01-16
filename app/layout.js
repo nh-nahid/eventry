@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { dbConnect } from "@/services/mongo";
+import AuthProvider from "./providers/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,10 +18,12 @@ export default async function RootLayout({ children }) {
       <body
         className={inter.className}
       >
-        <Navbar />
-        <main className="py-8">
-        {children}
-        </main>
+        <AuthProvider>
+          <Navbar />
+          <main className="py-8">
+            {children}
+          </main>
+        </AuthProvider>
       </body>
     </html>
   );
