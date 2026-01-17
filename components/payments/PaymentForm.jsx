@@ -1,11 +1,10 @@
 "use client"
-
-import { addGoingEvent } from "@/app/actions";
-import useAuth from "@/app/hooks/useAuth";
+import { addGoingEvent } from '@/app/actions';
+import useAuth from '@/app/hooks/useAuth';
+import React from 'react';
 
 const PaymentForm = ({eventId}) => {
-  const {auth} = useAuth();
-
+  const {auth} = useAuth()
     return (
         <form action={() => addGoingEvent(eventId, auth)}>
         <div className="my-4 space-y-2">

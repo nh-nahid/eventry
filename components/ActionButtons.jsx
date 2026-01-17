@@ -5,7 +5,7 @@ import useAuth from "@/app/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 
-const ActionButtons = ({ eventId, interestedUserIds, goingUserIds, fromDetails }) => {
+const ActionButtons = ({ eventId, interestedUserIds = [], goingUserIds, fromDetails }) => {
   const { auth } = useAuth();
   const router = useRouter();
 
@@ -24,14 +24,14 @@ const ActionButtons = ({ eventId, interestedUserIds, goingUserIds, fromDetails }
 
     await addInterestedEvent(eventId, auth.id);
     setInterested((prev) => !prev);
-    router.refresh(); 
+    router.refresh(); // ✅ sync server + UI
   }
 
   function markGoing() {
     if(auth){
-        router.push(`/payment/${eventId}`)
-    } else{
-        router.push("/login")
+      router.push(`/payment/${eventId}`);
+    }else{
+      router.push("/login");
     }
   }
 

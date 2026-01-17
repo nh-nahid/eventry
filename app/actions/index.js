@@ -48,7 +48,7 @@ async function addGoingEvent(eventId, user) {
         throw error;
     }
 
-    revalidatePath('/', "page");
+    revalidatePath('/');
     redirect('/')
 }
 
@@ -60,7 +60,7 @@ async function sendEmail(eventId, user) {
     const message = `Dear ${user?.name}, you have been successfully registered for the event, ${event?.name}. Please carry this email and your official id to the venue. We are excited to have you here.`;
 
     const sent = await resend.emails.send({
-        from: "noreply@nahid.io",
+        from: "noreply@noreply.nahid.io",
         to: user?.email,
         subject: "Successfully Registered for the event",
         react: EmailTemplate({ message })
@@ -75,5 +75,6 @@ export {
     registerUser,
     performLogin,
     addInterestedEvent,
-    addGoingEvent
+    addGoingEvent,
+    sendEmail
 }
