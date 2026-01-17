@@ -9,6 +9,7 @@ async function getAllEvents() {
     return replaceMongoIdInArray(allEvents);
 }
 
+
 async function getEventById(eventId) {
     const event = await eventModel.findById(eventId).lean();
     
@@ -58,6 +59,5 @@ export {
     createUser,
     FindUserByCredentials,
     updateInterest,
-    updateGoing,
-    
+    updateGoing,  
 }
